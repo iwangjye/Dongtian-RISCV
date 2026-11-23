@@ -1,0 +1,13 @@
+Dongtian
+Copyright 2026 Dongtian contributors
+
+The original Dongtian firmware, monitor, init programs, scripts, and
+documentation are licensed under the Apache License, Version 2.0.
+
+Linux/Debian kernel configuration, copyright records, source descriptors,
+and their license texts retain the terms of their respective upstream
+works. The Linux kernel binary is not distributed in this repository.
+
+Device-tree templates describe QEMU-generated virt hardware and were
+adapted for this prototype. QEMU implementation code is not distributed.
+See THIRD_PARTY_NOTICES.md for component and source information.

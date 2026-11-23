@@ -1,0 +1,133 @@
+{
+  "schema": "dongtian-public-release-v1",
+  "files": {
+    ".gitignore": {
+      "sha256": "ba5b412715140956428f1337a237702119bc681ca418e25cf04525affee73c05",
+      "bytes": 51
+    },
+    "LICENSE": {
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    "LICENSES/GPL-2.0.txt": {
+      "sha256": "0d5bf346df9e635a29dcdddf832dc5b002ca6cdc1c5c9c6c567d2a61bb0c5c15",
+      "bytes": 18012
+    },
+    "LICENSE_INVENTORY.json": {
+      "sha256": "24ec82b52b30fdf8784de29e417a6399f578565b5061a3461636e4455a512271",
+      "bytes": 6198
+    },
+    "NOTICE": {
+      "sha256": "fef7c1e96426f6635aeeadf9291adbc0fd2628f0b13bcb2450ce01c8e581e8f5",
+      "bytes": 605
+    },
+    "README.md": {
+      "sha256": "92a0a27f762f8484765c70ecffac7194898222fa1de3c447cc9aaf1424187723",
+      "bytes": 3419
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "sha256": "93d29353ae1d310e7239772adefe3337e868073eed4069f15d29754b22d5bf12",
+      "bytes": 1340
+    },
+    "docs/BOOT_AND_SBI_BOUNDARY.md": {
+      "sha256": "c2481e14e74b3f4bb74ec042141db54e69317ff06aea28ff3e220b917102129f",
+      "bytes": 4946
+    },
+    "docs/LIMITATIONS.md": {
+      "sha256": "18adc737b3fb8708c068e5b2457bfb97b6ec6e346ac59b080000f7a48940d9f8",
+      "bytes": 2170
+    },
+    "docs/REPRODUCIBILITY.md": {
+      "sha256": "d62f0ba4ea2af07b05b93aebe49049b732ffa38be63892fdbb66abb9e1d88b57",
+      "bytes": 2986
+    },
+    "docs/VALIDATION.md": {
+      "sha256": "8afd320889c30aaece37ac04e7dc2e59106c97e09e756cb3451f5143a694b233",
+      "bytes": 2132
+    },
+    "evidence/linux-positive.log": {
+      "sha256": "d19b55ebaccf300aa564defecb49f0d5d07d5425d24fae33a4d944e69f0bf833",
+      "bytes": 2368
+    },
+    "evidence/linux-private-read-denied.log": {
+      "sha256": "32f8ced6ac64408f95590574205436f4497864126d3c3c395eccbf64469108eb",
+      "bytes": 2468
+    },
+    "images/debian-kernel-copyright.txt": {
+      "sha256": "2ae27ed8a5581e2cc4969c266e655a280a8982f87dfe72c011c3f03d91897076",
+      "bytes": 11761
+    },
+    "images/kernel-info.json": {
+      "sha256": "b78e32c8aa3ec85f67be761b35759b04a15716d6569bf93f83affe2fb3096f48",
+      "bytes": 1472
+    },
+    "images/kernel.config": {
+      "sha256": "4c7dcf248d5052bfa041cb6c4d55f03caa1137c2fafe3cdc024b2d092b2512ee",
+      "bytes": 259000
+    },
+    "images/linux_6.12.117-1.dsc": {
+      "sha256": "041c7af261546dbad4ee57ccb237f02a8697b762be34aed2e1617ed49595942a",
+      "bytes": 290418
+    },
+    "include/monitor.h": {
+      "sha256": "e8defd9396ea7d62d83fb698e4f6f84d311652e3d0a814833cacc183e2ccf0ff",
+      "bytes": 448
+    },
+    "scripts/build.py": {
+      "sha256": "8ea8575c84a9be14681b55cf507143785ffc9a20ba9c5a435b42d454a6e98e22",
+      "bytes": 7068
+    },
+    "scripts/fetch-kernel.py": {
+      "sha256": "9864e14ac7047e726a75de6b096e9acc5d6f12a8722a7165602368f9c9d14246",
+      "bytes": 5679
+    },
+    "scripts/run.py": {
+      "sha256": "0146f74ba9b5cc3c86b0a15738cd54dd38fb3bf72d842f64f25aec417f146ff4",
+      "bytes": 4936
+    },
+    "scripts/verify.py": {
+      "sha256": "ced5ba2389a19d8f3005b1ab4d4184a30c9f2d4da01aa74e59a066ee0a6f69fa",
+      "bytes": 2052
+    },
+    "src/boot.S": {
+      "sha256": "3dd291b31167d45f4ed5f4d8a0f01761a6664b4ab64c9ce96cfdf09ba9dd64b3",
+      "bytes": 1962
+    },
+    "src/dts/guest.dts": {
+      "sha256": "cef920e2d61c4d4f02163ea8c60f3592fdeb48402eccdaa6dd73c694f2365abc",
+      "bytes": 6355
+    },
+    "src/dts/host.dts": {
+      "sha256": "87c79e40307a4f939a6b9c20eb14eabb2cdd6a05099532343d4fbb79b25a5c83",
+      "bytes": 6365
+    },
+    "src/firmware.c": {
+      "sha256": "e4677e74ca13caac1316221b54be2e3975cd290f33f78d9eb88fef6e4399c164",
+      "bytes": 3470
+    },
+    "src/init.c": {
+      "sha256": "2e249ba234e5a472f7eadf8fd13fc869808015a628e07f6b836a67cc8234a641",
+      "bytes": 2545
+    },
+    "src/lib.c": {
+      "sha256": "58978c1e53069b15630a47e6581b6e01e6b5d14b9e7f9bbeede0fecdda161afe",
+      "bytes": 290
+    },
+    "src/linker.ld": {
+      "sha256": "2e988168df6c07a7f62cdb60abefc2774d7b53d0250b31bf721c86d5303a69c8",
+      "bytes": 514
+    },
+    "src/monitor.c": {
+      "sha256": "ce79ab0e430cbeeaf5c0dbe5316d4238fed2a70f7466d395ce783ddf4324cdb5",
+      "bytes": 9363
+    },
+    "src/trap.S": {
+      "sha256": "c4c366847996bfa1baf6650dd91c69916ce25611f630e973ce8156ebb1e5d46f",
+      "bytes": 2224
+    },
+    "tests/init-private-read.c": {
+      "sha256": "54eb9b0a1f9f6236b1dbb5c9a61e04313b972f5082ee4c18b04b035aa30b1aa7",
+      "bytes": 3134
+    }
+  }
+}

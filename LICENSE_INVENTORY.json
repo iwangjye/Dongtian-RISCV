@@ -1,0 +1,175 @@
+{
+  "scope": "Original Dongtian work: Apache-2.0. Third-party provenance materials retain their respective terms. No Linux binary is distributed.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "LICENSE",
+      "license_expression": "Apache-2.0",
+      "category": "license text"
+    },
+    {
+      "path": "LICENSES/GPL-2.0.txt",
+      "license_expression": "GPL-2.0-only",
+      "category": "third-party provenance or license material",
+      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
+    },
+    {
+      "path": "NOTICE",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "README.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "docs/BOOT_AND_SBI_BOUNDARY.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "docs/LIMITATIONS.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "docs/REPRODUCIBILITY.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "evidence/linux-positive.log",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "evidence/linux-private-read-denied.log",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "images/debian-kernel-copyright.txt",
+      "license_expression": null,
+      "category": "third-party provenance or license material",
+      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
+    },
+    {
+      "path": "images/kernel-info.json",
+      "license_expression": null,
+      "category": "third-party provenance or license material",
+      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
+    },
+    {
+      "path": "images/kernel.config",
+      "license_expression": null,
+      "category": "third-party provenance or license material",
+      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
+    },
+    {
+      "path": "images/linux_6.12.117-1.dsc",
+      "license_expression": null,
+      "category": "third-party provenance or license material",
+      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
+    },
+    {
+      "path": "include/monitor.h",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "scripts/build.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "scripts/fetch-kernel.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "scripts/run.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "scripts/verify.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/boot.S",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/dts/guest.dts",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/dts/host.dts",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/firmware.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/init.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/lib.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/linker.ld",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/monitor.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "src/trap.S",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "tests/init-private-read.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, or generated experiment data"
+    },
+    {
+      "path": "LICENSE_INVENTORY.json",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian release metadata"
+    },
+    {
+      "path": "PUBLIC_MANIFEST.json",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian release metadata"
+    }
+  ]
+}

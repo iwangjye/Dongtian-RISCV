@@ -1,0 +1,49 @@
+[    0.000000] Linux version 6.12.117+deb13-riscv64 (debian-kernel@lists.debian.org) (riscv64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP Debian 6.12.117-1 (2026-11-12)
+[    0.000000] random: crng init done
+[    0.000000] Machine model: riscv-virtio,qemu
+[    0.000000] SBI specification v2.0 detected
+[    0.000000] SBI implementation ID=0x4d494e Version=0x1
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI SRST extension detected
+[    0.000000] earlycon: uart8250 at MMIO 0x0000000010000000 (options '')
+[    0.000000] printk: legacy bootconsole [uart8250] enabled
+[    0.107447] cpu0: rdtime lacks granularity needed to measure unaligned access speed
+LINUX_USERSPACE_ROLE=host
+uname.sysname=Linux
+uname.release=6.12.117+deb13-riscv64
+uname.machine=riscv64
+getpid=1
+host.devmem.fd=3
+HOST_REQUEST_DYNAMIC_HS_TO_VS
+[HS] Linux host context captured; G-stage isolated guest configured
+[HS] demotion complete; resuming Linux host userspace
+HOST_AFTER_DEMOTION
+HOST_AFTER_DEMOTION_TIME_OK
+HOST_REQUEST_CVM_LINUX
+[HS] entering independent Linux CVM at GPA 0x80200000
+[    0.000000] Linux version 6.12.117+deb13-riscv64 (debian-kernel@lists.debian.org) (riscv64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP Debian 6.12.117-1 (2026-11-12)
+[    0.000000] random: crng init done
+[    0.000000] Machine model: riscv-virtio,qemu
+[    0.000000] SBI specification v2.0 detected
+[    0.000000] SBI implementation ID=0x4c43564d Version=0x1
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] SBI SRST extension detected
+[    0.000000] SBI DBCN extension detected
+[    0.000000] earlycon: uart8250 at MMIO 0x0000000010000000 (options '')
+[    0.000000] printk: legacy bootconsole [uart8250] enabled
+[    0.113256] cpu0: rdtime lacks granularity needed to measure unaligned access speed
+LINUX_USERSPACE_ROLE=guest
+uname.sysname=Linux
+uname.release=6.12.117+deb13-riscv64
+uname.machine=riscv64
+getpid=1
+CVM_LINUX_USERSPACE_OK
+LINUX_REQUEST_POWER_OFF
+[    0.793427] reboot: Power down
+[HS] CVM requested shutdown; resuming demoted Linux host
+HOST_AFTER_CVM_RETURN
+LINUX_REQUEST_POWER_OFF
+[    2.257340] reboot: Power down
+MINIMAL_LINUX_CVM_PASS

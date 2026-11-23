@@ -1,0 +1,6 @@
+.git/
+images/Image
+build/
+runs/
+__pycache__/
+*.pyc
