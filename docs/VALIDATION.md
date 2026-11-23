@@ -20,3 +20,9 @@ The [normal serial log](../evidence/linux-positive.log), [private-read log](../e
 The command-line runner verifies build artifacts, the kernel pin, ordered execution markers, and exit status. Interactive mode itself records a session end rather than an automatic PASS; the terminal exchange above was additionally checked by the integration run. Source hashes and logs establish the exercised configuration, without constituting hardware attestation or a comprehensive security evaluation.
 
 Earlier standalone-firmware code has separate QEMU execution evidence on Linux and macOS. That earlier result is not used as a substitute for the expanded OpenSBI/module/control-console runs. See [execution scope](LIMITATIONS.md) and [reproduction instructions](REPRODUCIBILITY.md).
+
+## One-command workflow checks
+
+The environment checker and `demo.py` wrapper were exercised on the tested Linux host. The checker produced a real ELF64 RISC-V PIE probe. The demo then prepared dependencies from a pinned local archive cache, rebuilt the complete runtime, and passed the automatic Linux handoff/guest/return check. The existing verified Image cache was used; the kernel HTTP-download path was not exercised in this check.
+
+The same new build was reused through `demo.py` for the expected private-read denial and for a real terminal exchange of `info`, `demote`, `info`, `run`, `info`, `quit`. The interactive wrapper records `INTERACTIVE_COMPLETED`, not an automatic PASS. Each wrapper receipt records child commands and exit codes and points to the existing runner receipt. See the [portable check summary](../evidence/usability-summary.json) for outcomes and helper source hashes.

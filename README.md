@@ -1,5 +1,7 @@
 # Dongtian
 
+[简体中文](README.zh-CN.md) · [Architecture](docs/ARCHITECTURE.md)
+
 Dongtian is a RISC-V runtime for handing a running Linux host to an HS monitor through OpenSBI, then executing an independent Linux guest. It includes a Linux control driver, a freestanding management command, and an interactive control console.
 
 ## Components
@@ -19,19 +21,21 @@ Both Linux instances use the same unmodified Debian kernel. The host loads a rea
 
 The expanded build runs on x86_64 Linux with Python 3.12+, GNU make, a native C compiler, `dtc`, QEMU RISC-V system emulation, and a GNU RISC-V cross toolchain with a PIE-capable linker. On the tested Ubuntu 26.04 host the relevant distribution packages include `gcc-riscv64-linux-gnu`, `device-tree-compiler`, and `qemu-system-riscv`.
 
-From the repository root, use new output directories outside the checkout:
+From the repository root, run the complete automatic demo in a new directory outside the checkout:
 
 ```sh
-python3 -B scripts/verify.py
-python3 -B scripts/fetch-kernel.py
-python3 -B scripts/prepare-runtime.py --output ../dongtian-deps
-python3 -B scripts/build-runtime.py --deps ../dongtian-deps --output ../dongtian-build
-python3 -B scripts/run-runtime.py --build ../dongtian-build --output ../dongtian-run
+python3 -B scripts/demo.py --output ../dongtian-demo
 ```
 
-The two explicit preparation commands acquire pinned third-party inputs. The build compiles OpenSBI, the HS monitor, the kernel module, the management command, and host/guest initramfs. Successful automatic execution ends with `PASS_LINUX_HOST_AND_CVM`.
+The demo checks the environment and source inputs, fetches missing pinned inputs, prepares dependencies, builds the runtime, and runs QEMU. It may download third-party archives; it does not install software. Successful automatic execution ends with `PASS_LINUX_HOST_AND_CVM`. Logs and `demo-receipt.json` are saved under the output directory.
 
-Tool paths can be selected with `--cross-compile <prefix>`, `--dtc`, and `--qemu`. Offline archive caches are supported; see [reproduction instructions](docs/REPRODUCIBILITY.md).
+For a terminal-connected control console, use a separate new output directory:
+
+```sh
+python3 -B scripts/demo.py --output ../dongtian-console --interactive
+```
+
+Reuse a completed build with `--build ../dongtian-demo/build`. Tool paths can be selected with `--cross-compile <prefix>`, `--dtc`, and `--qemu`. See [reproduction instructions](docs/REPRODUCIBILITY.md) for environment checks, offline inputs, and individual preparation/build/run commands.
 
 ## Try the control console
 
@@ -54,7 +58,7 @@ The states progress from `NATIVE` to `DEMOTED` to `GUEST_DONE`. One guest execut
 
 ## Tested configuration
 
-The current runtime uses single-hart RISC-V QEMU TCG with a trusted initial host and preloaded guest images. See [validation](docs/VALIDATION.md), [implementation details](docs/BOOT_AND_SBI_BOUNDARY.md), and [execution scope](docs/LIMITATIONS.md).
+The runtime has execution evidence on Ubuntu 26.04, QEMU 10.2.1, GCC 14.2, and dtc 1.7.2. It uses single-hart RISC-V QEMU TCG with a trusted initial host and preloaded guest images. The host pauses while the guest runs; UART and PLIC are shared. See [validation](docs/VALIDATION.md), [implementation details](docs/BOOT_AND_SBI_BOUNDARY.md), and [execution scope](docs/LIMITATIONS.md).
 
 The [earlier standalone-firmware example](docs/LEGACY_MINIMAL.md) remains available separately.
 

@@ -5,6 +5,10 @@
       "sha256": "ba5b412715140956428f1337a237702119bc681ca418e25cf04525affee73c05",
       "bytes": 51
     },
+    "CHANGELOG.md": {
+      "sha256": "b23240ae3d988e98e5de93b112d7e4a87aa5247fdb99c89a0561ab35849f0fbd",
+      "bytes": 854
+    },
     "LICENSE": {
       "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
       "bytes": 11358
@@ -18,16 +22,20 @@
       "bytes": 1396
     },
     "LICENSE_INVENTORY.json": {
-      "sha256": "3384b52694eea60522b031fbaaf23c367345a56621af817246f6a45e629c8766",
-      "bytes": 13192
+      "sha256": "36bb083d579b4043c0233a7866eab3a61d8c03e3f699f9fcde9b28a685815781",
+      "bytes": 14721
     },
     "NOTICE": {
       "sha256": "3cbdf91942350eabd7a5788c7b74e62f4e98b8fc7ebd2f464d091a43cddcdcd6",
       "bytes": 745
     },
     "README.md": {
-      "sha256": "d72f0c5a32759689857e9b75029b00cdba2bf636244282a3c2a1d392f2ef5fac",
-      "bytes": 3269
+      "sha256": "106d0f32633337873689a53dc7bbef26fe3e453c861cce1e51cbbb4210905f93",
+      "bytes": 3617
+    },
+    "README.zh-CN.md": {
+      "sha256": "357d4d773e38bdab214ce45f4971f958b7e0921471db52959669002f2fb42572",
+      "bytes": 4925
     },
     "THIRD_PARTY_NOTICES.md": {
       "sha256": "4f9e80aa09e2c6d6122103a98b4ff59351cd32c1fff98595590722bcdf2bf7ed",
@@ -36,6 +44,10 @@
     "dependencies/manifest.json": {
       "sha256": "0b859f75f63e391f11ebb2a1e3a1d0cca632cde19c07ef11fca49617f0e68aeb",
       "bytes": 1474
+    },
+    "docs/ARCHITECTURE.md": {
+      "sha256": "c10b8e96b8df901e5a9fce0ea0eb13d23e16c0d7d34a4f4565bbe46970b29218",
+      "bytes": 2654
     },
     "docs/BOOT_AND_SBI_BOUNDARY.md": {
       "sha256": "f3dfec6abdd7d965723fd783310429eec02e8c6bde379e8b4489464f0fed9fbf",
@@ -50,12 +62,12 @@
       "bytes": 1266
     },
     "docs/REPRODUCIBILITY.md": {
-      "sha256": "8a1cd0fbb88ec88c042fb484aa64e8371bcf6ec83fa4bf4d34654b13b2c36156",
-      "bytes": 3715
+      "sha256": "cb67e2092dff383997c2f2c6e7e1ad822ef6a7e7618d9759d5dd5aff9d3563c5",
+      "bytes": 5745
     },
     "docs/VALIDATION.md": {
-      "sha256": "4e598857aeaf436cbf9e7b7687ab3ac460dd52798ad2629a07ad2254b1e04707",
-      "bytes": 2382
+      "sha256": "831033190b9c551ee20720dc65a395b82da479161da4c8233b4ea2043c34d7af",
+      "bytes": 3282
     },
     "driver/.gitignore": {
       "sha256": "949d2519d867ddd416fd2926f3b175f2d30f72c81272844cce31b3753827fd17",
@@ -84,6 +96,10 @@
     "evidence/linux-private-read-denied.log": {
       "sha256": "d7c737c78ba142af3738f5fbafabc6ad30650a0c7325232146b80aee4417b89f",
       "bytes": 5652
+    },
+    "evidence/usability-summary.json": {
+      "sha256": "c46b54d262264822ff0d31347f42de1ede279a9dda47a75a53a504c20227996d",
+      "bytes": 855
     },
     "images/debian-kernel-copyright.txt": {
       "sha256": "2ae27ed8a5581e2cc4969c266e655a280a8982f87dfe72c011c3f03d91897076",
@@ -120,6 +136,14 @@
     "scripts/build.py": {
       "sha256": "8ea8575c84a9be14681b55cf507143785ffc9a20ba9c5a435b42d454a6e98e22",
       "bytes": 7068
+    },
+    "scripts/check-env.py": {
+      "sha256": "45fc912b9cb8c67ec58881039b52b1d5b738932f035ca236c4be2dff6a9746eb",
+      "bytes": 4184
+    },
+    "scripts/demo.py": {
+      "sha256": "0fbe2a18b25ed9f0472cc9f7632315e7f32d9d29db48b1d6ccd48cf23c4e4fc1",
+      "bytes": 5442
     },
     "scripts/fetch-kernel.py": {
       "sha256": "9864e14ac7047e726a75de6b096e9acc5d6f12a8722a7165602368f9c9d14246",

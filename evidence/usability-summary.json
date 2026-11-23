@@ -1,0 +1,24 @@
+{
+  "status": "PASS_USABILITY_INTEGRATION",
+  "base_runtime_commit": "214f0b83c39db8d99f7239b5b40f485904846cd5",
+  "full_workflow": "PASS_LINUX_HOST_AND_CVM",
+  "private_read": "PASS_EXPECTED_CPU_READ_DENIAL",
+  "interactive_runner": "INTERACTIVE_SESSION_ENDED",
+  "interactive_command_exchange": "PASS_INTERACTIVE_DRIVER_CONTROL",
+  "interactive_commands": [
+    "info",
+    "demote",
+    "info",
+    "run",
+    "info",
+    "quit"
+  ],
+  "prerequisite_probe": "PASS_ELF64_RISCV_ET_DYN",
+  "kernel_input": "pinned verified local Image cache; no kernel HTTP download exercised",
+  "dependency_input": "pinned local archive cache",
+  "scripts_sha256": {
+    "demo.py": "0fbe2a18b25ed9f0472cc9f7632315e7f32d9d29db48b1d6ccd48cf23c4e4fc1",
+    "check-env.py": "45fc912b9cb8c67ec58881039b52b1d5b738932f035ca236c4be2dff6a9746eb"
+  },
+  "kernel_rebuilt": false
+}

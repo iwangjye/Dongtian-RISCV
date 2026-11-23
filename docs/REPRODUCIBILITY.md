@@ -6,6 +6,33 @@ The expanded path targets x86_64 Linux and Python 3.12+. It needs GNU make, a na
 
 The dependency manifest pins OpenSBI 1.7, commit `a32a91069119e7a5aa31e6bc51d5e00860be3d80`, plus Debian Linux 6.12.117-1 common headers, RISC-V generated headers/symbol versions, and x86_64 kernel build helpers. The kernel Image pin remains in `images/kernel-info.json`. The repository distributes source and metadata rather than a Linux binary, kernel headers, or third-party tool binaries.
 
+## Environment check and complete demo
+
+Check the full build environment before starting:
+
+```sh
+python3 -B scripts/check-env.py
+python3 -B scripts/demo.py --output ../dongtian-demo
+```
+
+The full check covers x86_64 Linux, Python 3.12+, native GCC, make, dtc, QEMU, and the complete GNU RISC-V tool prefix, including an actual PIE link probe. Select non-default tools with `--cross-compile PREFIX`, `--dtc PATH`, and `--qemu PATH`.
+
+The demo verifies source inputs, fetches a missing pinned kernel Image, prepares missing dependencies, builds, and runs automatic acceptance. Its output directory must be new and outside the checkout. It may download fixed third-party packages but never installs software. `demo-receipt.json` connects the step results and runtime receipt; inspect it alongside the per-step logs.
+
+```sh
+# Reuse a prepared dependency tree; build and run in a fresh output directory.
+python3 -B scripts/demo.py --deps ../dongtian-deps --output ../dongtian-demo
+# Reuse the build from a completed demo; artifact hashes are still checked.
+python3 -B scripts/demo.py --build ../dongtian-demo/build --output ../dongtian-again
+# Connect the terminal to the control console, or exercise the denial case.
+python3 -B scripts/demo.py --build ../dongtian-demo/build --output ../dongtian-console --interactive
+python3 -B scripts/demo.py --build ../dongtian-demo/build --output ../dongtian-denial --private-read
+```
+
+`--build` and `--deps` are alternatives. A reused build needs only the runtime environment check. `check-env.py --runtime-only` checks Python and QEMU; it does not run or accept the guest workflow. For cached inputs, add `--downloads /path/to/archive-cache` and `--kernel-deb /path/to/kernel.deb` to the demo. `--jobs N` selects build parallelism.
+
+The [validation page](VALIDATION.md) distinguishes recorded runtime evidence from helper checks performed for the current release. An environment check alone is not an execution result. The individual commands below remain available for inspecting each stage.
+
 ## Prepare
 
 ```sh
