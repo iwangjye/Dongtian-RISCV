@@ -23,7 +23,6 @@ Validated with single-hart RISC-V QEMU TCG and a trusted initial host. See the d
 - [Architecture](docs/ARCHITECTURE.md)
 - [Reproduction](docs/REPRODUCIBILITY.md)
 - [Validation](docs/VALIDATION.md)
-- [Limitations](docs/LIMITATIONS.md)
 
 ## License
 

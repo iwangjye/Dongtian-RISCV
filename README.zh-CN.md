@@ -23,7 +23,6 @@ python3 -B scripts/demo.py --output ../dongtian-demo
 - [架构说明](docs/ARCHITECTURE.md)
 - [复现文档](docs/REPRODUCIBILITY.md)
 - [验证记录](docs/VALIDATION.md)
-- [限制说明](docs/LIMITATIONS.md)
 
 ## 许可证
 
