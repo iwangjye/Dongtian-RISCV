@@ -1,8 +1,10 @@
 Dongtian
 Copyright 2026 Dongtian contributors
 
-The original Dongtian firmware, monitor, init programs, scripts, and
-documentation are licensed under the Apache License, Version 2.0.
+The original Dongtian firmware extension, monitor, init programs, management
+tool, scripts, and documentation use the Apache License, Version 2.0.
+The Linux kernel module and its Makefile are marked GPL-2.0-only.
+Downloaded OpenSBI retains its upstream BSD-2-Clause license.
 
 Linux/Debian kernel configuration, copyright records, source descriptors,
 and their license texts retain the terms of their respective upstream

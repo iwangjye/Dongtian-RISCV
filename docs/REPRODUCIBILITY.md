@@ -1,42 +1,42 @@
-# Reproducing the Linux transition
+# Reproducing the OpenSBI and driver runtime
 
-## Dependencies and tested environments
+## Inputs
 
-Use Python 3.9+, RISC-V-capable GCC/binutils or Clang/LLD, the device-tree compiler, and QEMU system emulation with the RISC-V H extension. The prototype was built and both execution cases passed with GCC 14.2, dtc 1.7.2, and QEMU 10.2.1 on x86_64 Ubuntu 26.04, and with Clang/LLD 22.1.8 and QEMU 11.1.2 on macOS arm64. These were RISC-V QEMU TCG executions; they do not establish physical-board behavior. Apple system Clang was not the tested RISC-V compiler.
+The expanded path targets x86_64 Linux and Python 3.12+. It needs GNU make, a native C compiler for OpenSBI build helpers, `dtc`, a RISC-V GNU compiler/binutils prefix, and QEMU system emulation with H-extension support. The OpenSBI link requires PIE support. `--cross-compile riscv64-linux-gnu-` selects a standard Linux-target toolchain; a custom complete GNU prefix can also be supplied.
 
-On Ubuntu 26.04, the tested package names are `gcc-riscv64-unknown-elf`, `device-tree-compiler`, and `qemu-system-riscv`. Verify availability for your distribution release. Python and the tools are external dependencies.
+The dependency manifest pins OpenSBI 1.7, commit `a32a91069119e7a5aa31e6bc51d5e00860be3d80`, plus Debian Linux 6.12.117-1 common headers, RISC-V generated headers/symbol versions, and x86_64 kernel build helpers. The kernel Image pin remains in `images/kernel-info.json`. The repository distributes source and metadata rather than a Linux binary, kernel headers, or third-party tool binaries.
 
-## Acquire the pinned kernel
-
-Run from the repository root:
+## Prepare
 
 ```sh
-python3 -B scripts/verify.py
 python3 -B scripts/fetch-kernel.py
+python3 -B scripts/prepare-runtime.py --output ../dongtian-deps
 ```
 
-Only the explicit fetch command downloads the kernel. It obtains Debian `linux-image-6.12.117+deb13-riscv64`, version `6.12.117-1`, checks the package SHA256, and extracts the fixed Image member with an additional SHA256 check. The repository includes kernel configuration, copyright, source descriptor, and metadata, but excludes the Image binary. For an existing matching package:
+For offline preparation, supply `fetch-kernel.py --deb /path/to/kernel.deb` and `prepare-runtime.py --downloads /path/to/archive-cache --output ../dongtian-deps`. The cache filenames and hashes are in `dependencies/manifest.json`; missing cache entries are downloaded by the explicit prepare command. Files are SHA-256 checked before extraction. Debian's signing trust chain is not independently checked by these scripts.
+
+Preparation extracts third-party packages without installing them or executing package maintainer scripts. It adds the local SBI extension to the pinned OpenSBI source and relocates the generated header Makefile to the prepared common-header path. Keep prepared output outside the source checkout and use a new directory after changing the extension or dependency pins. The builder rejects a stale extension source.
+
+## Build
 
 ```sh
-python3 -B scripts/fetch-kernel.py --deb /path/to/package.deb
+python3 -B scripts/build-runtime.py --deps ../dongtian-deps --output ../dongtian-build
 ```
 
-The pins are in `images/kernel-info.json`. Hash matching checks identity against these pins; this workflow does not independently validate Debian's signed archive trust chain or rebuild Linux from source.
+The kernel is not rebuilt or patched. The real external module uses the matching Debian `Module.symvers` and generated headers. Optional module BTF debug metadata is omitted; the kernel configuration and module ABI remain the pinned versions. Every build step has a log and a receipt; failures preserve their output.
 
-## Build and run
+Artifacts include OpenSBI `fw_jump.bin`, the HS monitor, `dongtian.ko`, the static `dongtian` command, four initramfs archives, and host/guest device trees. The automatic, manual-console, and private-read host variants share the same driver/monitor implementation.
 
-Use new output directories outside the repository:
+## Execute
 
 ```sh
-python3 -B scripts/build.py --output ../dongtian-build
-python3 -B scripts/run.py --build ../dongtian-build --output ../dongtian-run
-python3 -B scripts/run.py --build ../dongtian-build --output ../dongtian-private-read --private-read
+python3 -B scripts/run-runtime.py --build ../dongtian-build --output ../dongtian-run
+python3 -B scripts/run-runtime.py --build ../dongtian-build --output ../dongtian-private-read --private-read
+python3 -B scripts/run-runtime.py --build ../dongtian-build --output ../dongtian-console --interactive
 ```
 
-Select tools through build options `--cc`, `--ld`, and `--dtc`, and run option `--qemu`. For example, a Clang build requires a RISC-V-capable Clang and matching LLD. Consult each script's `--help` for accepted arguments.
+All output paths must be new and outside the checkout. Automatic acceptance requires the real OpenSBI banner, driver load, ordered Linux handoff/guest/return markers, and QEMU exit 0. The negative case accepts only the specific actual CPU private-page fault and intentional QEMU exit 1; its runner returns success when the denial is observed. Interactive mode connects the terminal to QEMU and records a session outcome rather than claiming automatic acceptance.
 
-The build reconstructs firmware, monitor, three no-libc init binaries, initramfs archives, and FDTs. Both Linux instances use the same unmodified downloaded kernel with different initramfs. The runner checks artifact hashes, preloads host/guest into separate RAM, and writes `serial.log` and `receipt.json`.
+The host's `/init` loads `/lib/modules/dongtian.ko` with `finit_module`. It invokes `/sbin/dongtian` as separate Linux processes, exercising the ioctl interface across native and virtualized host execution. The interactive prompt supports `info`, `demote`, `run`, and `quit`; it is a control console rather than a general shell.
 
-Positive acceptance requires the complete ordered boot/transition/return sequence and QEMU exit 0, yielding `PASS_LINUX_HOST_AND_CVM`. The negative run deliberately causes QEMU exit 1; the runner accepts only the expected actual CPU G-stage read fault and reports `PASS_EXPECTED_CPU_READ_DENIAL`. A rejected `/dev/mem` mapping alone is insufficient.
-
-`verify.py` checks the public source inventory in `PUBLIC_MANIFEST.json`. Source integrity, build receipts, and runtime acceptance are separate checks: a successful compile or matching hash alone does not prove either Linux boot.
+The driver is built for the emulated RISC-V Linux. Do not load it into the x86_64 machine running QEMU.

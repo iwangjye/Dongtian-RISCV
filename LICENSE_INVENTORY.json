@@ -1,175 +1,317 @@
 {
-  "scope": "Original Dongtian work: Apache-2.0. Third-party provenance materials retain their respective terms. No Linux binary is distributed.",
+  "scope": "Dongtian original code Apache-2.0; Linux control module GPL-2.0-only; downloaded OpenSBI retains BSD-2-Clause; Linux materials retain upstream terms. Third-party binaries are not distributed.",
   "files": [
     {
       "path": ".gitignore",
       "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
     },
     {
       "path": "LICENSE",
       "license_expression": "Apache-2.0",
-      "category": "license text"
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
     },
     {
       "path": "LICENSES/GPL-2.0.txt",
       "license_expression": "GPL-2.0-only",
-      "category": "third-party provenance or license material",
-      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
+      "category": "Linux control module or license text",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
     },
     {
-      "path": "NOTICE",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "README.md",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "THIRD_PARTY_NOTICES.md",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "docs/BOOT_AND_SBI_BOUNDARY.md",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "docs/LIMITATIONS.md",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "docs/REPRODUCIBILITY.md",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "docs/VALIDATION.md",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "evidence/linux-positive.log",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "evidence/linux-private-read-denied.log",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "images/debian-kernel-copyright.txt",
-      "license_expression": null,
-      "category": "third-party provenance or license material",
-      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
-    },
-    {
-      "path": "images/kernel-info.json",
-      "license_expression": null,
-      "category": "third-party provenance or license material",
-      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
-    },
-    {
-      "path": "images/kernel.config",
-      "license_expression": null,
-      "category": "third-party provenance or license material",
-      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
-    },
-    {
-      "path": "images/linux_6.12.117-1.dsc",
-      "license_expression": null,
-      "category": "third-party provenance or license material",
-      "evidence": "THIRD_PARTY_NOTICES.md and images/debian-kernel-copyright.txt"
-    },
-    {
-      "path": "include/monitor.h",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "scripts/build.py",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "scripts/fetch-kernel.py",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "scripts/run.py",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "scripts/verify.py",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/boot.S",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/dts/guest.dts",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/dts/host.dts",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/firmware.c",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/init.c",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/lib.c",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/linker.ld",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/monitor.c",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "src/trap.S",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
-    },
-    {
-      "path": "tests/init-private-read.c",
-      "license_expression": "Apache-2.0",
-      "category": "Dongtian original code, documentation, or generated experiment data"
+      "path": "LICENSES/OpenSBI-BSD-2-Clause.txt",
+      "license_expression": "BSD-2-Clause",
+      "category": "upstream OpenSBI license text",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
     },
     {
       "path": "LICENSE_INVENTORY.json",
       "license_expression": "Apache-2.0",
-      "category": "Dongtian release metadata"
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "NOTICE",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
     },
     {
       "path": "PUBLIC_MANIFEST.json",
       "license_expression": "Apache-2.0",
-      "category": "Dongtian release metadata"
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "README.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "dependencies/manifest.json",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "docs/BOOT_AND_SBI_BOUNDARY.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "docs/LEGACY_MINIMAL.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "docs/LIMITATIONS.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "docs/REPRODUCIBILITY.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "driver/.gitignore",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "driver/Makefile",
+      "license_expression": "GPL-2.0-only",
+      "category": "Linux control module or license text",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "driver/README.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "driver/dongtian.c",
+      "license_expression": "GPL-2.0-only",
+      "category": "Linux control module or license text",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "evidence/control-console.log",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "evidence/linux-positive.log",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "evidence/linux-private-read-denied.log",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "images/debian-kernel-copyright.txt",
+      "license_expression": null,
+      "category": "upstream Linux/Debian provenance material",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "images/kernel-info.json",
+      "license_expression": null,
+      "category": "upstream Linux/Debian provenance material",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "images/kernel.config",
+      "license_expression": null,
+      "category": "upstream Linux/Debian provenance material",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "images/linux_6.12.117-1.dsc",
+      "license_expression": null,
+      "category": "upstream Linux/Debian provenance material",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "include/dongtian_abi.h",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "include/monitor.h",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "opensbi/sbi_ecall_dongtian.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/build-runtime.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/build.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/fetch-kernel.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/prepare-runtime.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/run-runtime.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/run.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "scripts/verify.py",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/boot.S",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/dts/guest.dts",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/dts/host.dts",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/firmware.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/host-init.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/init.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/lib.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/linker.ld",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/monitor-entry.S",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/monitor-linker.ld",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/monitor.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "src/trap.S",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "tests/init-private-read.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "tools/README.md",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "tools/dongtian.c",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
+    },
+    {
+      "path": "tools/start.S",
+      "license_expression": "Apache-2.0",
+      "category": "Dongtian original code, documentation, configuration, or experiment data",
+      "evidence": "THIRD_PARTY_NOTICES.md and per-file SPDX headers"
     }
   ]
 }

@@ -1,15 +1,17 @@
-# Third-party notices
+# Component licenses and provenance
 
-## Linux and Debian kernel materials
+## Dongtian code
 
-The Linux kernel is a separate upstream/Debian work. The repository does not distribute its Image binary. Users explicitly acquire the pinned Debian kernel package with `scripts/fetch-kernel.py` or provide a matching local `.deb`. Linux is not relicensed under the license selected for Dongtian's own code.
+Original monitor, handoff extension, management command, scripts, and documentation use Apache-2.0. The small Linux control module and its Makefile use GPL-2.0-only, as marked in their SPDX headers; the GPL text is in `LICENSES/GPL-2.0.txt`. The shared ABI contains fixed protocol declarations. The driver is a reduced ioctl/SBI control implementation rather than a copy of an entire historical runtime.
 
-Retain and consult `images/debian-kernel-copyright.txt`, `images/kernel.config`, `images/kernel-info.json`, `images/linux_6.12.117-1.dsc`, and the kernel license material in `LICENSES/`. The metadata and Debian source descriptor identify corresponding source archives and their hashes. These files preserve third-party attribution and source information; they do not replace the upstream licensing terms.
+## OpenSBI
 
-## QEMU device-tree data
+OpenSBI 1.7 is acquired separately from the official repository at the exact commit and SHA-256 pin in `dependencies/manifest.json`. Upstream keeps its BSD-2-Clause license and notices; `LICENSES/OpenSBI-BSD-2-Clause.txt` retains the upstream license text. Preparation copies the local extension into the downloaded tree and explicitly adds its registration to the OpenSBI objects list. The extension is marked Apache-2.0; upstream files retain their terms.
 
-The device-tree sources describe the emulated `virt` hardware. They derive from QEMU-generated hardware-description data and are narrowed for this experiment's memory and device layout. This is generated descriptive data, not a copy of QEMU's implementation. QEMU is an external dependency and is not distributed here.
+## Linux and Debian
 
-## External tools
+The repository does not distribute the Linux Image, module headers, or kernel build-helper binaries. Explicit preparation commands acquire pinned Debian packages. Their upstream terms remain in effect. Kernel version/source URLs, copyright, configuration, and source descriptor are retained in `images/`; matching header/helper pins are in `dependencies/manifest.json`. The local module build does not modify or rebuild the Linux kernel.
 
-Python, QEMU, GCC/binutils or LLVM/Clang/LLD, and the device-tree compiler are installed separately and retain their respective licenses. No ownership of those projects is claimed by this repository.
+## QEMU and external tools
+
+Device-tree templates derive from QEMU-generated virt hardware descriptions and are adapted for this experiment. QEMU implementation code, GNU/LLVM toolchains, Python, make, and dtc are external dependencies and retain their own terms.

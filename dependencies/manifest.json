@@ -1,0 +1,32 @@
+{
+  "opensbi_commit": "a32a91069119e7a5aa31e6bc51d5e00860be3d80",
+  "opensbi_version": "1.7",
+  "linux_version": "6.12.117-1",
+  "packages": [
+    {
+      "file": "opensbi-v1.7.tar.gz",
+      "url": "https://codeload.github.com/riscv-software-src/opensbi/tar.gz/a32a91069119e7a5aa31e6bc51d5e00860be3d80",
+      "sha256": "01f8c8ce394a4d1656b83c2a97b0870c7137795bff1197a42600becaedd7dc9e",
+      "bytes": 490314
+    },
+    {
+      "file": "linux-headers-6.12.117+deb13-common_6.12.117-1_all.deb",
+      "url": "https://deb.debian.org/debian/pool/main/l/linux/linux-headers-6.12.117+deb13-common_6.12.117-1_all.deb",
+      "sha256": "ac1203a8778a01e09c0ef94d87a3607672c0fc3d5369540c3f1580269b277611",
+      "bytes": 11398724
+    },
+    {
+      "file": "linux-headers-6.12.117+deb13-riscv64_6.12.117-1_riscv64.deb",
+      "url": "https://deb.debian.org/debian/pool/main/l/linux/linux-headers-6.12.117+deb13-riscv64_6.12.117-1_riscv64.deb",
+      "sha256": "3637a6ff130922ca196fb3589778d211ef1b5a4679a9c42596b4399467b5b6c0",
+      "bytes": 3046736
+    },
+    {
+      "file": "linux-kbuild-6.12.117+deb13_6.12.117-1_amd64.deb",
+      "url": "https://deb.debian.org/debian/pool/main/l/linux/linux-kbuild-6.12.117+deb13_6.12.117-1_amd64.deb",
+      "sha256": "821ae105a5e2d04c68ddc1a446b8b3554cb4e4581bf009c4165f94612047e3eb",
+      "bytes": 1962920
+    }
+  ],
+  "verification": "Official HTTPS downloads pinned by SHA-256; Debian archive signatures not independently verified."
+}

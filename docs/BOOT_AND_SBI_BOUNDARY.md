@@ -1,34 +1,36 @@
-# Linux boot and SBI boundary
+# OpenSBI, driver, and HS handoff
 
-This note describes the controlled single-hart QEMU execution implemented by Dongtian. The initial HS host and preloaded images are trusted.
+## Runtime layout
 
-## Boot and transition actually implemented
+OpenSBI 1.7 occupies M mode at physical `0x80000000`. A separately linked HS monitor is preloaded at `0x80100000`, and a fixed handoff page is at `0x801f0000`. The host kernel begins at `0x80200000`; its device tree excludes the firmware/monitor reservation from allocatable RAM.
 
-1. The M firmware starts hart 0, parks other harts, permits HS physical accesses through PMP, initializes delegation and machine timer handling, and enters the ordinary Linux Image at PA `0x80200000` with `satp=0`, `a0=0`, and `a1=0x9f000000` (host FDT). The host kernel initially runs in HS; this is not a host first booted in VS.
-2. The host `/init` mounts devtmpfs, maps PA `0x11000000` through `/dev/mem`, and issues a deliberately noncompressed four-byte `sw`. Its first store faults while `/init` is in U mode. M retains store-access-fault handling and translates `mtval` through the current host page tables to confirm the trigger PA. The helper supports Bare and Sv39/Sv48/Sv57 layouts; it is a local trusted-page-table address resolver, not a complete architectural page-walk validator.
-3. M saves all integer registers (including original U stack), original `mepc`, and `mstatus`. It captures the S execution/translation/trap state used here: `sstatus`, `satp`, `stvec`, `sscratch`, `sie`, `sepc`, `scause`, and `stval`. It advances the saved PC by exactly four bytes, derives the return privilege from saved MPP, clears `satp`, fences, resets the separate M stack pointer, and enters `monitor_main` on the HS monitor stack. The saved U origin produces SPP=0 and SPVP=0; it must not be forced to supervisor origin.
-4. HS copies the captured frame, creates separate G-stage RAM maps, installs VS CSRs on restore, and resumes the existing host `/init` in VU immediately after the first store. The host kernel, page tables, userspace, and memory remain live; host boot is not restarted. The previous SBI timer deadline and pending timer indication are carried into the host virtual timer. The demonstrated post-transition `nanosleep` returns successfully.
-5. The second four-byte store to the same PA hits the host's intentionally absent G-stage MMIO leaf. HS advances that host PC and enters the independently preloaded guest Linux at GPA `0x80200000`. Guest shutdown returns to the suspended VS host; host then resumes userspace and shuts down.
+The initial firmware device tree enables the QEMU timer and system-reset descriptions so OpenSBI can initialize M-mode services. The local extension then disables those platform-device nodes in the next-stage Linux device-tree copy. Linux uses SBI for timer/reset services, and the post-handoff G-stage does not expose CLINT or the finisher. Firmware and Linux receive the same bounded host RAM layout, avoiding allocator access to preloaded guest RAM.
 
-## Loader and memory layout
+| Item | Host physical address | Guest GPA to host physical address |
+| --- | --- | --- |
+| Kernel Image | `0x80200000` | `0x80200000` to `0xa0200000` |
+| initramfs | `0x85000000` | `0x85000000` to `0xa5000000` |
+| Device tree | `0x9f000000` | `0x87000000` to `0xa7000000` |
+| RAM | `[0x80200000,0xa0000000)` | `[0x80000000,0x88000000)` to `[0xa0000000,0xa8000000)` |
 
-| Item | Host physical address | Guest GPA → physical address |
-|---|---:|---:|
-| Linux Image | `0x80200000` | `0x80200000` → `0xa0200000` |
-| initramfs | `0x85000000` | `0x85000000` → `0xa5000000` |
-| FDT | `0x9f000000` | `0x87000000` → `0xa7000000` |
-| Allocatable RAM | `[0x80200000,0xa0000000)` | `[0x80000000,0x88000000)` → `[0xa0000000,0xa8000000)` |
+## Management path
 
-QEMU raw-loader devices preload all six artifacts. Neither VS domain maps the firmware/monitor region `[0x80000000,0x80200000)` as RAM; the host does not map guest private RAM. UART and PLIC are shared physical devices. The host is suspended during synchronous guest execution; this is not device isolation or concurrent device virtualization.
+The host boots in native HS and reaches PID 1. Init loads the kernel module and starts management commands as separate processes. `/dev/dongtian` exposes exactly INFO, DEMOTE, and RUN ioctls to privileged callers. The driver serializes operations and issues the fixed experimental SBI extension `0x0800d07a` on hart 0 with preemption and interrupts disabled.
 
-## SBI retained and excluded
+- FID 0 queries state; FID 3 queries the completed guest-run count.
+- FID 1 hands native HS execution to the monitor.
+- FID 2, handled by the HS monitor after demotion, enters the independent guest.
 
-The M layer provides the local boot necessities: BASE (reported spec 2.0), TIME/legacy timer, legacy UART console calls, and shutdown/SRST through the QEMU finisher. Unsupported extensions return not-supported. TIME programs hart 0's CLINT `mtimecmp`; MTIP is converted to delegated STIP. This is a deliberately small implementation, not a complete SBI 2.0 conformance claim: modern M TIME/SRST paths do not validate every function/argument, machine identity results are synthetic zeroes, and SMP/IPI/RFENCE/HSM facilities are not provided by M.
+The SBI result follows the ordinary error/value convention in `a0`/`a1`. The ioctl structure is a fixed 16-byte ABI. State transitions are NATIVE (0), DEMOTED (1), and GUEST_DONE (2).
 
-After demotion, VS SBI calls terminate at the HS monitor. It implements the local BASE/TIME, legacy console, single-hart IPI/local RFENCE, limited HSM status, bounded DBCN console, and SRST paths used by these Linux boots. HS uses M TIME for periodic ticks, compares virtual deadlines, and injects VSTIP. Physical PLIC output is sampled on those ticks and delivered as VSEIP. These are bounded single-hart services, not general multi-hart firmware. Guest SRST means return to the host in this demonstration; host SRST reaches the finisher after the expected chain completes.
+## Handoff and return
 
-## Kernel provenance and claim boundary
+The OpenSBI extension captures the integer registers and the S translation/trap state. It stores the original SBI continuation at `mepc+4`, with successful SBI return values, in the fixed handoff page. `skip_regs_update` prevents the ordinary ecall dispatcher from overwriting the redirected entry state. M-mode trap return enters the HS monitor with bare `satp`.
 
-Both Linux instances use the same unmodified Debian kernel, `linux-image-6.12.117+deb13-riscv64`, version `6.12.117-1`. The user explicitly acquires it through the pinned fetch workflow; no Image binary is included in the source repository. See the retained metadata in `images/`. OpenSBI is not linked into this execution path.
+The monitor builds separate G-stage mappings, places the saved native S state into VS CSRs, and uses `sret` to resume the same kernel driver invocation in VS. The driver restores its saved IRQ/preemption state and returns to the management process in VU. The original Linux is not rebooted. The pre-handoff timer deadline and pending indication are preserved in the handoff record.
 
-Both host and guest post-demotion MMIO mappings are limited to UART and the six-MiB PLIC aperture. Neither exposes CLINT or a broad MMIO window through G-stage. Timers use SBI through M/HS. The verified behavior is a controlled transition, second Linux boot, synchronous return, and one private-page CPU read denial. See [LIMITATIONS.md](LIMITATIONS.md) for remaining architectural and security boundaries.
+RUN suspends the host and starts guest Linux. Guest SRST or supported legacy shutdown marks completion and resumes the host's ioctl continuation. The management tool checks GUEST_DONE and one completed run. A host shutdown then reaches OpenSBI's system-reset service through the HS SBI handler.
+
+## Implementation lineage
+
+This path extends the compact public monitor with actual OpenSBI integration, a reduced kernel control driver, and user management tools. It is not a verbatim pruning of a larger historical runtime. The standalone `build.py`/`run.py` workflow is retained as an earlier comparison example.

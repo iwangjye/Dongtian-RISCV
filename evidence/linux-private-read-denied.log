@@ -1,26 +1,94 @@
+
+OpenSBI v1.7
+   ____                    _____ ____ _____
+  / __ \                  / ____|  _ \_   _|
+ | |  | |_ __   ___ _ __ | (___ | |_) || |
+ | |  | | '_ \ / _ \ '_ \ \___ \|  _ < | |
+ | |__| | |_) |  __/ | | |____) | |_) || |_
+  \____/| .__/ \___|_| |_|_____/|____/_____|
+        | |
+        |_|
+
+Platform Name               : riscv-virtio,qemu
+Platform Features           : medeleg
+Platform HART Count         : 1
+Platform IPI Device         : aclint-mswi
+Platform Timer Device       : aclint-mtimer @ 10000000Hz
+Platform Console Device     : uart8250
+Platform HSM Device         : ---
+Platform PMU Device         : ---
+Platform Reboot Device      : syscon-reboot
+Platform Shutdown Device    : syscon-poweroff
+Platform Suspend Device     : ---
+Platform CPPC Device        : ---
+Firmware Base               : 0x80000000
+Firmware Size               : 317 KB
+Firmware RW Offset          : 0x40000
+Firmware RW Size            : 61 KB
+Firmware Heap Offset        : 0x46000
+Firmware Heap Size          : 37 KB (total), 2 KB (reserved), 11 KB (used), 23 KB (free)
+Firmware Scratch Size       : 4096 B (total), 400 B (used), 3696 B (free)
+Runtime SBI Version         : 3.0
+Standard SBI Extensions     : ipi,pmu,srst,sse,hsm,rfnc,fwft,time,base,legacy,dbcn,dbtr
+Experimental SBI Extensions : dt
+
+Domain0 Name                : root
+Domain0 Boot HART           : 0
+Domain0 HARTs               : 0*
+Domain0 Region00            : 0x0000000000100000-0x0000000000100fff M: (I,R,W) S/U: (R,W)
+Domain0 Region01            : 0x0000000010000000-0x0000000010000fff M: (I,R,W) S/U: (R,W)
+Domain0 Region02            : 0x0000000002000000-0x000000000200ffff M: (I,R,W) S/U: ()
+Domain0 Region03            : 0x0000000080040000-0x000000008004ffff M: (R,W) S/U: ()
+Domain0 Region04            : 0x0000000080000000-0x000000008003ffff M: (R,X) S/U: ()
+Domain0 Region05            : 0x000000000c400000-0x000000000c5fffff M: (I,R,W) S/U: (R,W)
+Domain0 Region06            : 0x000000000c000000-0x000000000c3fffff M: (I,R,W) S/U: (R,W)
+Domain0 Region07            : 0x0000000000000000-0xffffffffffffffff M: () S/U: (R,W,X)
+Domain0 Next Address        : 0x0000000080200000
+Domain0 Next Arg1           : 0x000000009f000000
+Domain0 Next Mode           : S-mode
+Domain0 SysReset            : yes
+Domain0 SysSuspend          : yes
+
+Boot HART ID                : 0
+Boot HART Domain            : root
+Boot HART Priv Version      : v1.12
+Boot HART Base ISA          : rv64imach
+Boot HART ISA Extensions    : zicntr,zihpm,sdtrig,svadu
+Boot HART PMP Count         : 16
+Boot HART PMP Granularity   : 2 bits
+Boot HART PMP Address Bits  : 54
+Boot HART MHPM Info         : 16 (0x0007fff8)
+Boot HART Debug Triggers    : 2 triggers
+Boot HART MIDELEG           : 0x0000000000001666
+Boot HART MEDELEG           : 0x0000000000f4b509
 [    0.000000] Linux version 6.12.117+deb13-riscv64 (debian-kernel@lists.debian.org) (riscv64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP Debian 6.12.117-1 (2026-11-12)
 [    0.000000] random: crng init done
 [    0.000000] Machine model: riscv-virtio,qemu
-[    0.000000] SBI specification v2.0 detected
-[    0.000000] SBI implementation ID=0x4d494e Version=0x1
+[    0.000000] SBI specification v3.0 detected
+[    0.000000] SBI implementation ID=0x1 Version=0x10007
 [    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
 [    0.000000] SBI SRST extension detected
+[    0.000000] SBI DBCN extension detected
 [    0.000000] earlycon: uart8250 at MMIO 0x0000000010000000 (options '')
 [    0.000000] printk: legacy bootconsole [uart8250] enabled
-[    0.102977] cpu0: rdtime lacks granularity needed to measure unaligned access speed
-LINUX_USERSPACE_ROLE=host-private-read
+LINUX_USERSPACE_ROLE=host
 uname.sysname=Linux
-uname.release=6.12.117+deb13-riscv64
-uname.machine=riscv64
 getpid=1
-host.devmem.fd=3
+[    1.007103] dongtian: loading out-of-tree module taints kernel.
+DONGTIAN_KERNEL_DRIVER_LOADED
+DONGTIAN_INFO abi=1 state=0 state_name=NATIVE guest_runs=0
 HOST_REQUEST_DYNAMIC_HS_TO_VS
+[Dongtian/OpenSBI] handing native HS Linux to HS monitor
 [HS] Linux host context captured; G-stage isolated guest configured
 [HS] demotion complete; resuming Linux host userspace
+DONGTIAN_INFO abi=1 state=1 state_name=DEMOTED guest_runs=0
 HOST_AFTER_DEMOTION
 HOST_AFTER_DEMOTION_TIME_OK
+DONGTIAN_INFO abi=1 state=1 state_name=DEMOTED guest_runs=0
 HOST_REQUEST_CVM_LINUX
-[HS] entering independent Linux CVM at GPA 0x80200000
+[HS] entering independent Linux CVM through driver SBI
 [    0.000000] Linux version 6.12.117+deb13-riscv64 (debian-kernel@lists.debian.org) (riscv64-linux-gnu-gcc-14 (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #1 SMP Debian 6.12.117-1 (2026-11-12)
 [    0.000000] random: crng init done
 [    0.000000] Machine model: riscv-virtio,qemu
@@ -33,7 +101,6 @@ HOST_REQUEST_CVM_LINUX
 [    0.000000] SBI DBCN extension detected
 [    0.000000] earlycon: uart8250 at MMIO 0x0000000010000000 (options '')
 [    0.000000] printk: legacy bootconsole [uart8250] enabled
-[    0.113238] cpu0: rdtime lacks granularity needed to measure unaligned access speed
 LINUX_USERSPACE_ROLE=guest
 uname.sysname=Linux
 uname.release=6.12.117+deb13-riscv64
@@ -41,8 +108,10 @@ uname.machine=riscv64
 getpid=1
 CVM_LINUX_USERSPACE_OK
 LINUX_REQUEST_POWER_OFF
-[    0.782937] reboot: Power down
+[    1.233783] reboot: Power down
 [HS] CVM requested shutdown; resuming demoted Linux host
+DONGTIAN_INFO abi=1 state=2 state_name=GUEST_DONE guest_runs=1
 HOST_AFTER_CVM_RETURN
+DONGTIAN_INFO abi=1 state=2 state_name=GUEST_DONE guest_runs=1
 HOST_PRIVATE_READ_ATTEMPT
-[HS] FATAL unexpected VS trap domain=0000000000000000 cause=0000000000000015 pc=0000000000011a7c stval=00007fff870e9000 htval=0000000028080000
+[HS] FATAL unexpected VS trap domain=0000000000000000 cause=0000000000000015 pc=00000000000104e8 stval=00007fffbbc77000 htval=0000000028080000

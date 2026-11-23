@@ -5,6 +5,9 @@
  * UART and PLIC MMIO are shared for synchronous guest entry, not isolated.
  * No external project runtime modules. */
 #include "monitor.h"
+#ifdef DONGTIAN_OPENSBI
+#include "dongtian_abi.h"
+#endif
 #define READ(c)                                                                \
   ({                                                                           \
     uint64_t v;                                                                \
@@ -92,9 +95,14 @@ void monitor_main(const struct context *initial) {
    * entered this function in HS with bare satp. */
   domain[0] = *initial;
   /* Carry the pre-demotion SBI timer deadline into the VS host. */
+  #ifdef DONGTIAN_OPENSBI
+  const uint64_t *handoff_timer = (const uint64_t *)(initial + 1);
+  deadlines[0] = handoff_timer[0];
+  if (handoff_timer[1]) domain[0].hvip |= VSTIP;
+#else
   deadlines[0] = *(volatile uint64_t *)0x2004000;
-  if (READ(sip) & (1UL << 5))
-    domain[0].hvip |= VSTIP;
+  if (READ(sip) & (1UL << 5)) domain[0].hvip |= VSTIP;
+#endif
   domain[0].return_status = (initial->return_status | (1UL << 5)) & ~(1UL << 1);
   domain[0].return_hstatus = initial->return_hstatus;
   /* Host identity map excludes firmware; only UART and PLIC MMIO are mapped. */
@@ -136,6 +144,25 @@ static void handle_sbi(struct context *c) {
   uint64_t ext = c->x[17], fid = c->x[16], a0 = c->x[10], a1 = c->x[11];
   long err = 0, val = 0;
   c->pc += 4;
+#ifdef DONGTIAN_OPENSBI
+  if (ext == 0x0800d07aUL) {
+    if (active) err = -4;
+    else if (fid == 0) val = guest_done ? 2 : 1;
+    else if (fid == 3) val = guest_done ? 1 : 0;
+    else if (fid == 1) err = -6;
+    else if (fid == 2 && !guest_started) {
+      guest_started = 1;
+      c->x[10] = 0;
+      c->x[11] = 0;
+      active = 1;
+      puts("[HS] entering independent Linux CVM through driver SBI\n");
+      return;
+    } else err = -3;
+    c->x[10] = err;
+    c->x[11] = val;
+    return;
+  }
+#endif
   if (ext == 0) {
     deadlines[active] = a0;
     c->hvip &= ~VSTIP;
@@ -154,6 +181,8 @@ static void handle_sbi(struct context *c) {
   if (ext == 8) {
     puts("[HS] legacy guest shutdown\n");
     if (active) {
+      deadlines[1] = ~0UL;
+      guest_done = 1;
       active = 0;
       return;
     }
@@ -251,8 +280,13 @@ static void handle_sbi(struct context *c) {
       puts("MINIMAL_LINUX_CVM_PASS\n");
       sbi(ext, fid, a0, a1);
     } else {
+#ifdef DONGTIAN_OPENSBI
+      puts("[HS] host requested shutdown\n");
+      sbi(ext, fid, a0, a1);
+#else
       puts("MINIMAL_LINUX_CVM_FAIL\n");
       *(volatile unsigned *)0x100000 = 0x13333;
+#endif
     }
     break;
   default:
